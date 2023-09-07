@@ -123,5 +123,19 @@ public class Main {
 //		BookBindCopies bbc26 = new BookBindCopies("The Girl with the Dragon Tattoo", BindingEnum.SOFTBOUND, 4);
 //		BookBindCopies bbc27 = new BookBindCopies("The Girl with the Dragon Tattoo", BindingEnum.PAPERBACK, 4);
 //		BookBindCopies bbc28 = new BookBindCopies("The Girl with the Dragon Tattoo", BindingEnum.EBOOK, 4);
+		
+		
+		try {
+			Date issueDate = dateFormat.parse("24/08/2020");
+			Issue issue1 = new Issue("Aravind", "The Adventures of Sherlock Holmes", BindingEnum.SOFTBOUND, issueDate);
+			System.out.println(issue1);
+			//System.out.println("\n");
+			//System.out.println("Here is your book : ");
+			//System.out.println(issue1.giveBook());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		
 	}
 }

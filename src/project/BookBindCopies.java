@@ -55,24 +55,76 @@ public class BookBindCopies {
 	}
 	
 	public static String getCopiesIDFromBookIDAndBinding(String bookID, BindingEnum binding) {
+		try(Connection connection = DatabaseUtil.getConnection()){
+			String sql = "Select * from BookBindCopies";
+			
+			try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+				ResultSet resultSet = preparedStatement.executeQuery();
+				
+				while(resultSet.next()) {
+					String rowsCopyID = resultSet.getString("copyID");
+					String rowsBookID = resultSet.getString("bookID");
+					String rowsBinding = resultSet.getString("binding");
+					//String inputCategory = name;
+					
+					if(rowsBookID.equals(bookID) && rowsBinding.equals(binding.toString())) {
+						return rowsCopyID;
+					}
+				}
+				
+			}catch(SQLException e) {
+				System.out.println(e);
+			}
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
 		
 		//System.out.println("Inside the getCopyID function : "+bookID + " binding :  "+ binding+ " ");
-		for (BookBindCopies bbc : bookBindCopies) {
-			if(bbc.bookID == bookID && bbc.binding == binding) {
-				return bbc.copyID;
-			}
-		}
+		
+		
+		
+//		for (BookBindCopies bbc : bookBindCopies) {
+//			if(bbc.bookID == bookID && bbc.binding == binding) {
+//				return bbc.copyID;
+//			}
+//		}
 		return "A Book with this specific Binding never existed";
 	}
 	
 
 	
 	public static boolean isCopyAvailavble(String copyID) {
-		for (BookBindCopies bbc : bookBindCopies) {
-			if(bbc.copyID == copyID && bbc.copies > 0) {
-				return true;
+		try(Connection connection = DatabaseUtil.getConnection()){
+			String sql = "Select * from BookBindCopies";
+			
+			try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+				ResultSet resultSet = preparedStatement.executeQuery();
+				
+				while(resultSet.next()) {
+					String rowsCopyID = resultSet.getString("copyID");
+					Integer rowsCopies = resultSet.getInt("copies");
+//					String rowsBinding = resultSet.getString("binding");
+					//String inputCategory = name;
+					
+					if(rowsCopyID.equals(copyID) && rowsCopies > 0) {
+						return true;
+					}
+				}
+				
+			}catch(SQLException e) {
+				System.out.println(e);
 			}
+		}catch(SQLException e) {
+			System.out.println(e);
 		}
+		
+		
+		
+//		for (BookBindCopies bbc : bookBindCopies) {
+//			if(bbc.copyID == copyID && bbc.copies > 0) {
+//				return true;
+//			}
+//		}
 		return false;
 	}
 	
@@ -85,6 +137,24 @@ public class BookBindCopies {
 		return null;
 	}
 	
+	
+	public static void reduceCopyCount(String copyID) {
+		try(Connection connection = DatabaseUtil.getConnection()){
+			String sql = "UPDATE BookBindCopies SET Copies = Copies - 1 WHERE copyID = ? ";
+			
+			try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+				preparedStatement.setString(1, copyID);
+
+				
+				preparedStatement.executeUpdate();
+			}catch(SQLException e) {
+				System.out.println("error in execution : " + e);
+			}
+		}catch(SQLException e) {
+			System.out.println("error in connection");
+		}
+	
+	}
 	
 	@Override
 	public String toString() {

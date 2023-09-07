@@ -2,10 +2,14 @@ package project;
 
 import java.util.Date;
 import java.util.Calendar;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import Database.DatabaseUtil;
 import Enumerations.BindingEnum;
 import Enumerations.StatusEnum;
 
@@ -19,6 +23,29 @@ public class Issue {
 	public StatusEnum status;
 	public static List<Issue> issues = new ArrayList<>();
 	
+	private void addIssuesToDB() {
+		try(Connection connection = DatabaseUtil.getConnection()){
+			String sql = "INSERT INTO Issue (issueID, userID, bookCopyID, issueDate, returnDate, fine, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			
+			try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+				preparedStatement.setString(1, this.issueID);
+				preparedStatement.setString(2, this.userID);
+				preparedStatement.setString(3, this.bookCopyID);
+				preparedStatement.setDate(4, new java.sql.Date(this.issueDate.getTime()));
+				preparedStatement.setDate(5, new java.sql.Date(this.returnDate.getTime()));
+				preparedStatement.setInt(6, this.fine);
+				preparedStatement.setString(7, this.status.toString());
+				System.out.println("Are you even trying bro??");
+				
+				preparedStatement.executeUpdate();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}catch(SQLException e) {
+			System.out.println("connection issue adding error : " + e.getStackTrace());
+		}
+	}
 	
     public Issue(String UserName, String bookName, BindingEnum binding, Date issueDate) throws OutOfStockExcpetion {
         this.issueID = UUID.randomUUID().toString();
@@ -27,7 +54,7 @@ public class Issue {
         
 //        System.out.println(this.bookCopyID);
         if(!BookBindCopies.isCopyAvailavble(this.bookCopyID)) {
-        	throw new OutOfStockExcpetion("Extremely Sorry " + User.getUserNameFromUserID(this.userID) + ", The book "+ bookName +" is out of stock! ");
+        	throw new OutOfStockExcpetion("Extremely Sorry , The book "+ bookName +" is out of stock! ");
         }
         
         this.issueDate = issueDate;
@@ -41,9 +68,9 @@ public class Issue {
         this.status = StatusEnum.YET_TO_RETURN; 
         
         //decrement the available book Copy
-        BookBindCopies.getObjectByID(this.bookCopyID).copies--;
-        
-        
+        //BookBindCopies.getObjectByID(this.bookCopyID).copies--;
+        BookBindCopies.reduceCopyCount(this.bookCopyID);
+        this.addIssuesToDB();
         issues.add(this);
     }
 
