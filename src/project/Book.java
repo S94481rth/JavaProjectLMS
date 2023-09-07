@@ -30,10 +30,10 @@ public class Book {
 				
 				preparedStatement.executeUpdate();
 			}catch(SQLException e) {
-				
+				System.out.println("error in execution : " + e);
 			}
 		}catch(SQLException e) {
-			
+			System.out.println("error in connection");
 		}
 	}
 	
@@ -42,7 +42,7 @@ public class Book {
 		this.author = author;
 		this.bookID = UUID.randomUUID().toString();
 		this.categoryID = Category.getCategoryID(category);
-		//this.insertBookIntoDatabase();
+		this.insertBookIntoDatabase();
 		books.add(this);
 	}
 	

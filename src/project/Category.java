@@ -4,6 +4,7 @@ import java.util.UUID;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import Database.DatabaseUtil;
 import Enumerations.CategoriesEnum;
@@ -68,11 +69,34 @@ public class Category {
 	
 
 	public static String getCategoryID(CategoriesEnum category) {
-		for(Category cat : categories) {
-			if(cat.name == category) {
-				return cat.categoryID;
+		try(Connection connection = DatabaseUtil.getConnection()){
+			String sql = "Select * from Category";
+			
+			try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+				ResultSet resultSet = preparedStatement.executeQuery();
+				
+				while(resultSet.next()) {
+					String rowsID = resultSet.getString("categoryID");
+					String rowsCategoryName = resultSet.getString("name");
+					String inputCategory = category.toString();
+					
+					if(rowsCategoryName.equals(inputCategory)) {
+						return rowsID;
+					}
+				}
+				
+			}catch(SQLException e) {
+				System.out.println(e);
 			}
+		}catch(SQLException e) {
+			System.out.println(e);
 		}
+		
+//		for(Category cat : categories) {
+//			if(cat.name == category) {
+//				return cat.categoryID;
+//			}
+//		}
 		return "No such category";
 	}
 	

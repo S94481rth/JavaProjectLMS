@@ -37,35 +37,23 @@ public class Main {
 		
 //		 Making sure catedory id assigned during category creation and book's category id are the same
 		 
-		Category category1 = new Category(CategoriesEnum.CRIME, CategoriesEnum.NONFICTION, true);
-		Category category2 = new Category(CategoriesEnum.ROMANCE, CategoriesEnum.NONFICTION, true);
-		Category category3 = new Category(CategoriesEnum.MAGIC, CategoriesEnum.FICTION, true);
-		Category category4 = new Category(CategoriesEnum.VAMPIRE, CategoriesEnum.FICTION, true);
-		Category category5 = new Category(CategoriesEnum.FICTION, CategoriesEnum.GENERAL, false);
-		Category category6 = new Category(CategoriesEnum.NONFICTION, CategoriesEnum.GENERAL, false);
-		Category category7 = new Category(CategoriesEnum.GENERAL, CategoriesEnum.NULL, false);
+//		Category category1 = new Category(CategoriesEnum.CRIME, CategoriesEnum.NONFICTION, true);
+//		Category category2 = new Category(CategoriesEnum.ROMANCE, CategoriesEnum.NONFICTION, true);
+//		Category category3 = new Category(CategoriesEnum.MAGIC, CategoriesEnum.FICTION, true);
+//		Category category4 = new Category(CategoriesEnum.VAMPIRE, CategoriesEnum.FICTION, true);
+//		Category category5 = new Category(CategoriesEnum.FICTION, CategoriesEnum.GENERAL, false);
+//		Category category6 = new Category(CategoriesEnum.NONFICTION, CategoriesEnum.GENERAL, false);
+//		Category category7 = new Category(CategoriesEnum.GENERAL, CategoriesEnum.NULL, false);
 		
 		
-		Book book1 = new Book("And Then There Were None", "Agatha Chirstie", CategoriesEnum.CRIME);
-		Book book2 = new Book("Murder on the Orient Express", "Agatha Chirstie", CategoriesEnum.CRIME);
-		Book book3 = new Book("Harry potter", "JK Rowling", CategoriesEnum.MAGIC);
-
-//		System.out.println("id of crime : " + Category.getCategoryID(CategoriesEnum.CRIME));
-//		System.out.println("book2 cat id : "+book1.getCategoryID());
-//		System.out.println("book2 cat id : "+book2.getCategoryID());
-//		System.out.println("book3 cat id : "+book3.getCategoryID());
-		
-		
-		
-		
-//		Making sure that the bbc and books have making ids (ukwim)
-		 
 //		Book book1 = new Book("And Then There Were None", "Agatha Chirstie", CategoriesEnum.CRIME);
 //		Book book2 = new Book("Murder on the Orient Express", "Agatha Chirstie", CategoriesEnum.CRIME);
 //		Book book3 = new Book("Harry potter", "JK Rowling", CategoriesEnum.MAGIC);
-//		
-//		System.out.println(book1.getBookID());
-//		
+
+	
+//		Making sure that the bbc and books have making ids (ukwim)
+		 
+
 		BookBindCopies bbc1 = new BookBindCopies("Harry potter", BindingEnum.HARDBOUND,2);
 		BookBindCopies bbc2 = new BookBindCopies("Harry potter", BindingEnum.SOFTBOUND,2);
 		BookBindCopies bbc3 = new BookBindCopies("And Then There Were None", BindingEnum.SPIRALBOUND,1);
@@ -92,12 +80,12 @@ public class Main {
 //		System.out.println("\n\n\n\n\n");
 		//implement search
 		//DFS SEARCH success
-		List<Book> booksForUsersRequest = Book.getBooksInCategory(CategoriesEnum.GENERAL);
-
-
-		for(Book b : booksForUsersRequest) {
-			System.out.println(b);
-		}
+//		List<Book> booksForUsersRequest = Book.getBooksInCategory(CategoriesEnum.GENERAL);
+//
+//
+//		for(Book b : booksForUsersRequest) {
+//			System.out.println(b);
+//		}
 		
 		
 	}
