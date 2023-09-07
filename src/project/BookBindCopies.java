@@ -5,7 +5,8 @@ import Enumerations.BindingEnum;
 
 import java.util.List;
 import java.util.ArrayList;
-
+import java.sql.*;
+import Database.DatabaseUtil;
 
 
 public class BookBindCopies {
@@ -20,11 +21,30 @@ public class BookBindCopies {
 		return this.copyID;
 	}
 	
+	private void insertCopiesInfoDatabase(){
+		try(Connection connection = DatabaseUtil.getConnection()){
+			String sql = "INSERT INTO BookBindCopies(copyID, copies, binding, bookID) VALUES (?, ?, ?, ?)";
+			
+			try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+				preparedStatement.setString(1, this.copyID);
+				preparedStatement.setInt(2, this.copies);
+				preparedStatement.setString(3, this.binding.toString());
+				preparedStatement.setString(4, this.bookID);
+				
+				preparedStatement.executeUpdate();
+			}
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
 	BookBindCopies(String bookName, BindingEnum binding, int copies){
 		this.copyID = UUID.randomUUID().toString();
 		this.binding = binding;
 		this.copies = copies;
 		this.bookID = Book.getBookIDFromName(bookName);
+		
+		this.insertCopiesInfoDatabase();
 		bookBindCopies.add(this);	
 	}
 	
@@ -68,8 +88,8 @@ public class BookBindCopies {
 	
 	@Override
 	public String toString() {
-		return "BookBindCopies [copyID=" + copyID + ", bookID=" + bookID + ", binding=" + binding + ", "
-				+ "copies=" + copies + "]";
+		return "BookBindCopies [copyID=" + this.copyID + ", bookID=" + this.bookID + ", binding=" + this.binding + ", "
+				+ "copies=" + this.copies + "]";
 	}
 
 }

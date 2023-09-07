@@ -10,6 +10,7 @@ import java.sql.Connection;
 import Database.DatabaseUtil;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Book {
 	public String name;
@@ -72,11 +73,34 @@ public class Book {
 	}
 	
 	public static String getBookIDFromName(String name) {
-		for(Book b : books) {
-			if(b.name == name) {
-				return b.bookID;
+		try(Connection connection = DatabaseUtil.getConnection()){
+			String sql = "Select * from Book";
+			
+			try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+				ResultSet resultSet = preparedStatement.executeQuery();
+				
+				while(resultSet.next()) {
+					String rowsID = resultSet.getString("bookID");
+					String rowsBookName = resultSet.getString("name");
+					String inputCategory = name;
+					
+					if(rowsBookName.equals(inputCategory)) {
+						return rowsID;
+					}
+				}
+				
+			}catch(SQLException e) {
+				System.out.println(e);
 			}
+		}catch(SQLException e) {
+			System.out.println(e);
 		}
+		
+//		for(Book b : books) {
+//			if(b.name == name) {
+//				return b.bookID;
+//			}
+//		}
 		return "No such book exists";
 	}
 	

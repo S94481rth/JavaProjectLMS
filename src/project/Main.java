@@ -54,12 +54,12 @@ public class Main {
 //		Making sure that the bbc and books have making ids (ukwim)
 		 
 
-		BookBindCopies bbc1 = new BookBindCopies("Harry potter", BindingEnum.HARDBOUND,2);
-		BookBindCopies bbc2 = new BookBindCopies("Harry potter", BindingEnum.SOFTBOUND,2);
-		BookBindCopies bbc3 = new BookBindCopies("And Then There Were None", BindingEnum.SPIRALBOUND,1);
-		BookBindCopies bbc4 = new BookBindCopies("Murder on the Orient Express", BindingEnum.HARDBOUND,4);
+//		BookBindCopies bbc1 = new BookBindCopies("Harry potter", BindingEnum.HARDBOUND,2);
+//		BookBindCopies bbc2 = new BookBindCopies("Harry potter", BindingEnum.SOFTBOUND,2);
+//		BookBindCopies bbc3 = new BookBindCopies("And Then There Were None", BindingEnum.SPIRALBOUND,1);
+//		BookBindCopies bbc4 = new BookBindCopies("Murder on the Orient Express", BindingEnum.HARDBOUND,4);
 
-		
+//		System.out.println(bbc1);
 
 		
 //
@@ -88,5 +88,40 @@ public class Main {
 //		}
 		
 		
+		
+//		BookBindCopies bbc5 = new BookBindCopies("Harry potter", BindingEnum.HARDBOUND, 2);
+//		BookBindCopies bbc6 = new BookBindCopies("Harry potter", BindingEnum.SOFTBOUND, 2);
+//		BookBindCopies bbc7 = new BookBindCopies("Harry potter", BindingEnum.PAPERBACK, 2);
+//		BookBindCopies bbc8 = new BookBindCopies("Harry potter", BindingEnum.EBOOK, 2);
+//		For "And Then There Were None":
+//		5. BookBindCopies bbc9 = new BookBindCopies("And Then There Were None", BindingEnum.HARDBOUND, 4);
+
+//		BookBindCopies bbc10 = new BookBindCopies("And Then There Were None", BindingEnum.SOFTBOUND, 4);
+//		BookBindCopies bbc11 = new BookBindCopies("And Then There Were None", BindingEnum.PAPERBACK, 4);
+//		BookBindCopies bbc12 = new BookBindCopies("And Then There Were None", BindingEnum.EBOOK, 4);
+////		For "Murder on the Orient Express":
+////		9. BookBindCopies bbc13 = new BookBindCopies("Murder on the Orient Express", BindingEnum.HARDBOUND, 4);
+//
+//		BookBindCopies bbc14 = new BookBindCopies("Murder on the Orient Express", BindingEnum.SOFTBOUND, 4);
+//		BookBindCopies bbc15 = new BookBindCopies("Murder on the Orient Express", BindingEnum.PAPERBACK, 4);
+//		BookBindCopies bbc16 = new BookBindCopies("Murder on the Orient Express", BindingEnum.EBOOK, 4);
+////		For "The Adventures of Sherlock Holmes":
+////		13. BookBindCopies bbc17 = new BookBindCopies("The Adventures of Sherlock Holmes", BindingEnum.HARDBOUND, 3);
+//
+//		BookBindCopies bbc18 = new BookBindCopies("The Adventures of Sherlock Holmes", BindingEnum.SOFTBOUND, 3);
+//		BookBindCopies bbc19 = new BookBindCopies("The Adventures of Sherlock Holmes", BindingEnum.PAPERBACK, 3);
+//		BookBindCopies bbc20 = new BookBindCopies("The Adventures of Sherlock Holmes", BindingEnum.EBOOK, 3);
+////		For "Gone Girl":
+////		17. BookBindCopies bbc21 = new BookBindCopies("Gone Girl", BindingEnum.HARDBOUND, 5);
+//
+//		BookBindCopies bbc22 = new BookBindCopies("Gone Girl", BindingEnum.SOFTBOUND, 5);
+//		BookBindCopies bbc23 = new BookBindCopies("Gone Girl", BindingEnum.PAPERBACK, 5);
+//		BookBindCopies bbc24 = new BookBindCopies("Gone Girl", BindingEnum.EBOOK, 5);
+////		For "The Girl with the Dragon Tattoo":
+////		21. BookBindCopies bbc25 = new BookBindCopies("The Girl with the Dragon Tattoo", BindingEnum.HARDBOUND, 4);
+//
+//		BookBindCopies bbc26 = new BookBindCopies("The Girl with the Dragon Tattoo", BindingEnum.SOFTBOUND, 4);
+//		BookBindCopies bbc27 = new BookBindCopies("The Girl with the Dragon Tattoo", BindingEnum.PAPERBACK, 4);
+//		BookBindCopies bbc28 = new BookBindCopies("The Girl with the Dragon Tattoo", BindingEnum.EBOOK, 4);
 	}
 }
