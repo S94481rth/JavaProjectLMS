@@ -35,7 +35,7 @@ public class Issue {
 				preparedStatement.setDate(5, new java.sql.Date(this.returnDate.getTime()));
 				preparedStatement.setInt(6, this.fine);
 				preparedStatement.setString(7, this.status.toString());
-				System.out.println("Are you even trying bro??");
+//				System.out.println("Are you even trying bro??");
 				
 				preparedStatement.executeUpdate();
 			}catch(SQLException e) {
@@ -54,7 +54,7 @@ public class Issue {
         
 //        System.out.println(this.bookCopyID);
         if(!BookBindCopies.isCopyAvailavble(this.bookCopyID)) {
-        	throw new OutOfStockExcpetion("Extremely Sorry , The book "+ bookName +" is out of stock! ");
+        	throw new OutOfStockExcpetion("Extremely Sorry , The book '"+ bookName +"' is out of stock! ");
         }
         
         this.issueDate = issueDate;

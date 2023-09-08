@@ -127,7 +127,7 @@ public class Main {
 		
 		try {
 			Date issueDate = dateFormat.parse("24/08/2020");
-			Issue issue1 = new Issue("Aravind", "The Adventures of Sherlock Holmes", BindingEnum.SOFTBOUND, issueDate);
+			Issue issue1 = new Issue("Akash", "The Girl with the Dragon Tattoo", BindingEnum.SOFTBOUND, issueDate);
 			System.out.println(issue1);
 			//System.out.println("\n");
 			//System.out.println("Here is your book : ");
